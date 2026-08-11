@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visi dan Misi - Kesbangpol</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN untuk Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#1b5e20',
+              lightGreen: '#2e7d32',
+              gray: '#f4f6f8',
+              darkGray: '#333333'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-gray text-gray-800 font-sans flex flex-col min-h-screen">
+
+  <!-- ==================== PRELOADER ==================== -->
+  <div id="loader-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/90 backdrop-blur-sm transition-opacity duration-500">
+    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl flex flex-col items-center justify-center space-y-4 max-w-xs sm:max-w-sm text-center mx-4 border border-emerald-100">
+      <div class="relative flex items-center justify-center">
+        <div class="w-16 h-16 border-4 border-emerald-200 border-t-brand-green rounded-full animate-spin"></div>
+        <i class="fa-solid fa-shield-halved text-brand-green text-xl absolute"></i>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-gray-800">Memuat Halaman...</h3>
+        <p class="text-xs text-gray-500 mt-1">Menyiapkan informasi Visi dan Misi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="bg-brand-green text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Icon & Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="bg-white p-2 rounded-full text-brand-green text-lg sm:text-xl font-bold flex-shrink-0">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <a href="index.html" class="font-bold text-sm sm:text-base md:text-lg lg:text-xl tracking-wide uppercase leading-tight">
+            Kesatuan Bangsa & Politik
+          </a>
+        </div>
+
+        <!-- Links (Desktop) -->
+        <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+          <a href="index.html" class="hover:text-gray-200 transition">Beranda</a>
+
+          <!-- Dropdown Profil PD -->
+          <div class="relative group">
+            <button class="flex items-center space-x-1 hover:text-gray-200 py-2 focus:outline-none text-emerald-200">
+              <span>Profil PD</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div class="absolute left-0 w-52 bg-white text-gray-800 rounded-md shadow-lg py-2 hidden group-hover:block transition duration-200">
+              <a href="profil-pimpinan.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Profil Pimpinan</a>
+              <a href="sejarah.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Sejarah</a>
+              <a href="struktur-organisasi.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Struktur Organisasi</a>
+              <a href="visi-misi.html" class="block px-4 py-2 bg-emerald-50 text-brand-green font-semibold">Visi dan Misi</a>
+              <a href="tugas-fungsi.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Tugas dan Fungsi</a>
+            </div>
+          </div>
+
+          <a href="Program.html" class="hover:text-gray-200 transition">Program</a>
+          <a href="Agenda-Pimpinan.html" class="hover:text-gray-200 transition">Agenda Pimpinan</a>
+
+          <!-- Dropdown Publikasi -->
+          <div class="relative group">
+            <button class="flex items-center space-x-1 hover:text-gray-200 py-2 focus:outline-none">
+              <span>Publikasi</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div class="absolute left-0 w-48 bg-white text-gray-800 rounded-md shadow-lg py-2 hidden group-hover:block transition duration-200">
+              <a href="Publikasi-berita.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Berita</a>
+              <a href="Agenda-Pimpinan.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Detail Berita</a>
+            </div>
+          </div>
+
+          <a href="SaranDanKritik.html" class="bg-white text-brand-green px-4 py-2 rounded-md font-semibold hover:bg-gray-100 transition shadow">Saran dan Kritik</a>
+        </div>
+
+        <!-- Hamburger Button (Mobile/Tablet) -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-md text-white hover:text-gray-200 hover:bg-brand-lightGreen focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile / Tablet Menu Dropdown -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-emerald-900 border-t border-emerald-800 px-4 pt-2 pb-6 space-y-2 text-sm font-medium">
+      <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-brand-lightGreen">Beranda</a>
+      
+      <!-- Accordion Profil PD -->
+      <div>
+        <button id="mobile-profil-btn" class="w-full flex justify-between items-center px-3 py-2 rounded-md bg-brand-lightGreen text-left">
+          <span>Profil PD</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="mobile-profil-sub" class="pl-4 pr-2 py-1 space-y-1 bg-emerald-950/40 rounded-md mt-1">
+          <a href="profil-pimpinan.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Profil Pimpinan</a>
+          <a href="sejarah.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Sejarah</a>
+          <a href="struktur-organisasi.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Struktur Organisasi</a>
+          <a href="visi-misi.html" class="block px-3 py-1.5 text-xs text-white font-bold">Visi dan Misi</a>
+        </div>
+      </div>
+      <a href="Program.html" class="block px-3 py-2 rounded-md hover:bg-brand-lightGreen">Program</a>
+      <a href="Agenda-Pimpinan.html" class="block px-3 py-2 rounded-md hover:bg-brand-lightGreen">Agenda Pimpinan</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HEADER HALAMAN ==================== -->
+  <header class="bg-brand-lightGreen py-10 md:py-16 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">Visi & Misi</h1>
+      <p class="text-emerald-100 text-sm md:text-base max-w-2xl mx-auto">Arah komitmen dan panduan strategis Badan Kesatuan Bangsa dan Politik dalam menjaga keutuhan serta ketenteraman masyarakat.</p>
+    </div>
+  </header>
+
+  <!-- ==================== KONTEN UTAMA ==================== -->
+  <main class="flex-grow py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <!-- SECTION VISI -->
+      <section class="bg-white rounded-2xl p-6 sm:p-10 shadow-sm border border-gray-100 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-5 text-brand-green pointer-events-none">
+          <i class="fa-solid fa-bullseye text-[240px]"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-brand-green rounded-full mb-4">
+            <i class="fa-solid fa-eye text-2xl"></i>
+          </div>
+          <span class="block text-brand-lightGreen font-bold uppercase tracking-wider text-xs sm:text-sm mb-1">Visi Utama</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Badan Kesatuan Bangsa dan Politik</h2>
+          
+          <div class="bg-brand-gray p-6 sm:p-8 rounded-xl border-l-4 border-brand-green shadow-inner">
+            <p class="text-gray-800 text-base sm:text-xl font-medium italic leading-relaxed">
+              "Terwujudnya Masyarakat yang Bersatu, Kondusif, Demokratis, dan Berwawasan Kebangsaan Berlandaskan Pancasila dan UUD 1945."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION MISI -->
+      <section>
+        <div class="text-center mb-10">
+          <span class="text-brand-lightGreen font-bold uppercase tracking-wider text-xs sm:text-sm">Langkah Strategis</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">Misi Pembangunan Kebangsaan</h2>
+          <div class="w-16 h-1 bg-brand-green mx-auto mt-3 rounded"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Card Misi 1 -->
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition">
+            <div class="bg-brand-green text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg shrink-0 shadow">
+              1
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-2">Penguatan Ideologi & Wawasan Kebangsaan</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Meningkatkan pemahaman, penghayatan, dan pengamalan nilai-nilai Pancasila, UUD 1945, NKRI, serta Bhinneka Tunggal Ika di seluruh lapisan masyarakat dan generasi muda.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Misi 2 -->
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition">
+            <div class="bg-brand-green text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg shrink-0 shadow">
+              2
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-2">Pendidikan Politik & Etika Budaya Politik</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Mewujudkan iklim politik daerah yang santun, kondusif, dan demokratis melalui edukasi politik yang sehat serta peningkatan partisipasi aktif warga dalam Pemilu.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Misi 3 -->
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition">
+            <div class="bg-brand-green text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg shrink-0 shadow">
+              3
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-2">Kewaspadaan Nasional & Penanganan Konflik</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Mengoptimalkan sistem cegah dini dan deteksi dini terhadap potensi ancaman, tantangan, hambatan, serta gangguan guna memelihara ketertiban sosial.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Misi 4 -->
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition">
+            <div class="bg-brand-green text-white w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg shrink-0 shadow">
+              4
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-800 text-base sm:text-lg mb-2">Kemitraan Organisasi Kemasyarakatan (Ormas)</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Mendorong sinergitas, kemandirian, dan peran aktif organisasi masyarakat serta Lembaga Swadaya Masyarakat (LSM) dalam pembangunan daerah.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION NILAI UTAMA (MOTTO) -->
+      <section class="bg-brand-green text-white rounded-2xl p-8 md:p-10 shadow-lg">
+        <div class="text-center mb-8">
+          <h3 class="text-xl md:text-2xl font-bold">Nilai-Nilai Utama Tata Kerja</h3>
+          <p class="text-emerald-100 text-xs sm:text-sm mt-1">Prinsip dasar Aparatur Sipil Negara Kesbangpol dalam melayani publik</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div class="bg-emerald-800/60 p-5 rounded-xl border border-emerald-600/50">
+            <i class="fa-solid fa-handshake text-3xl text-emerald-300 mb-3"></i>
+            <h4 class="font-bold text-base mb-1">INTEGRITAS</h4>
+            <p class="text-xs text-emerald-100">Jujur, akuntabel, dan berpegang teguh pada norma kedinasan.</p>
+          </div>
+
+          <div class="bg-emerald-800/60 p-5 rounded-xl border border-emerald-600/50">
+            <i class="fa-solid fa-shield-heart text-3xl text-emerald-300 mb-3"></i>
+            <h4 class="font-bold text-base mb-1">KONDUSIF</h4>
+            <p class="text-xs text-emerald-100">Menciptakan rasa aman dan keharmonisan di tengah masyarakat.</p>
+          </div>
+
+          <div class="bg-emerald-800/60 p-5 rounded-xl border border-emerald-600/50">
+            <i class="fa-solid fa-people-group text-3xl text-emerald-300 mb-3"></i>
+            <h4 class="font-bold text-base mb-1">SINERGI</h4>
+            <p class="text-xs text-emerald-100">Bekerjasama secara erat dengan TNI, Polri, dan seluruh elemen warga.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brand-darkGray text-gray-300 py-8 border-t-4 border-brand-green mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <i class="fa-solid fa-shield-halved text-2xl text-brand-lightGreen"></i>
+        <div>
+          <h4 class="text-white font-bold text-lg">Badan Kesbangpol</h4>
+          <p class="text-xs">Menjaga Persatuan dan Kesatuan Bangsa</p>
+        </div>
+      </div>
+      <div class="text-sm text-center md:text-right text-gray-400">
+        &copy; 2026 Badan Kesatuan Bangsa dan Politik.<br class="md:hidden"> Hak Cipta Dilindungi.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPT ==================== -->
+  <script>
+    // Menghilangkan Preloader setelah halaman dimuat
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loader-modal');
+      loader.classList.add('opacity-0');
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    });
+
+    // Toggle Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Accordion Mobile Profil PD
+    const mobileProfilBtn = document.getElementById('mobile-profil-btn');
+    const mobileProfilSub = document.getElementById('mobile-profil-sub');
+    if(mobileProfilBtn) {
+      mobileProfilBtn.addEventListener('click', () => {
+        mobileProfilSub.classList.toggle('hidden');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Pimpinan - Badan Kesbangpol</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: "#1b5e20",
+                            lightGreen: "#2e7d32",
+                            gray: "#f4f6f8"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-brand-gray min-h-screen flex flex-col justify-between">
+
+    <nav class="bg-brand-green text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Icon & Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="bg-white p-2 rounded-full text-brand-green text-lg sm:text-xl font-bold flex-shrink-0">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <a href="index.html" class="font-bold text-sm sm:text-base md:text-lg lg:text-xl tracking-wide uppercase leading-tight">
+            Kesatuan Bangsa & Politik
+          </a>
+        </div>
+
+        <!-- Links (Desktop) -->
+        <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+          <a href="index.html" class="hover:text-gray-200 transition">Beranda</a>
+
+          <!-- Dropdown Profil PD -->
+          <div class="relative group">
+            <button class="flex items-center space-x-1 hover:text-gray-200 py-2 focus:outline-none">
+              <span>Profil PD</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div class="absolute left-0 w-52 bg-white text-gray-800 rounded-md shadow-lg py-2 hidden group-hover:block transition duration-200">
+              <a href="profil pimpinan.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Profil Pimpinan</a>
+              <a href="sejarah.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Sejarah</a>
+              <a href="struktur-organisasi.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Struktur Organisasi</a>
+              <a href="tugas-fungsi.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Visi dan Misi</a>
+              <a href="visi-misi.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Tugas dan Fungsi</a>
+            </div>
+          </div>
+
+          <a href="Program.html" class="hover:text-gray-200 transition">Program</a>
+          <a href="Agenda-Pimpinan.html" class="hover:text-gray-200 transition">Agenda Pimpinan</a>
+
+          <!-- Dropdown Publikasi -->
+          <div class="relative group">
+            <button class="flex items-center space-x-1 hover:text-gray-200 py-2 focus:outline-none">
+              <span>Publikasi</span>
+              <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div class="absolute left-0 w-48 bg-white text-gray-800 rounded-md shadow-lg py-2 hidden group-hover:block transition duration-200">
+              <a href="Publikasi-berita.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Berita</a>
+              <a href="Publikasi-DetailBerita.html" class="block px-4 py-2 hover:bg-emerald-50 hover:text-brand-green">Detail Berita</a>
+            </div>
+          </div>
+
+          <a href="SaranDanKritik.html" class="bg-white text-brand-green px-4 py-2 rounded-md font-semibold hover:bg-gray-100 transition shadow">Saran dan Kritik</a>
+        </div>
+
+        <!-- Hamburger Button (Mobile/Tablet) -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-btn" class="p-2 rounded-md text-white hover:text-gray-200 hover:bg-brand-lightGreen focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile / Tablet Menu Dropdown -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-emerald-900 border-t border-emerald-800 px-4 pt-2 pb-6 space-y-2 text-sm font-medium">
+      <a href="Beranda" class="block px-3 py-2 rounded-md hover:bg-brand-lightGreen">Beranda</a>
+      
+      <!-- Accordion Profil PD -->
+      <div>
+        <button id="mobile-profil-btn" class="w-full flex justify-between items-center px-3 py-2 rounded-md hover:bg-brand-lightGreen text-left">
+          <span>Profil PD</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="mobile-profil-sub" class="hidden pl-4 pr-2 py-1 space-y-1 bg-emerald-950/40 rounded-md mt-1">
+          <a href="profil pimpinan.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Profil Pimpinan</a>
+          <a href="sejarah.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Sejarah</a>
+          <a href="struktur-organisasi.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Struktur Organisasi</a>
+          <a href="visi-misi.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Visi dan Misi</a>
+          <a href="tugas-fungsi.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Tugas dan Fungsi</a>
+        </div>
+      </div>
+
+      <a href="Program.html" class="block px-3 py-2 rounded-md hover:bg-brand-lightGreen">Program</a>
+      <a href="Agenda-Pimpinan.html" class="block px-3 py-2 rounded-md hover:bg-brand-lightGreen">Agenda Pimpinan</a>
+
+      <!-- Accordion Publikasi -->
+      <div>
+        <button id="mobile-publikasi-btn" class="w-full flex justify-between items-center px-3 py-2 rounded-md hover:bg-brand-lightGreen text-left">
+          <span>Publikasi</span>
+          <i class="fa-solid fa-chevron-down text-xs"></i>
+        </button>
+        <div id="mobile-publikasi-sub" class="hidden pl-4 pr-2 py-1 space-y-1 bg-emerald-950/40 rounded-md mt-1">
+          <a href="Publikasi-berita.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Berita</a>
+          <a href="Publikasi-DetailBerita.html" class="block px-3 py-1.5 text-xs text-gray-200 hover:text-white">Detail Berita</a>
+        </div>
+      </div>
+
+      <a href="SaranDanKritik.html" class="block px-3 py-2 rounded-md bg-white text-brand-green font-semibold text-center mt-3">Saran dan Kritik</a>
+    </div>
+  </nav>
+
+    <!-- Header / Banner -->
+    <header class="bg-brand-green text-white py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <span class="bg-green-800 text-green-200 text-xs uppercase px-3 py-1 rounded-full font-semibold tracking-wide">
+                Informasi Kedinasan
+            </span>
+            <h1 class="text-4xl font-extrabold mt-3">Agenda & Jadwal Pimpinan</h1>
+            <p class="mt-2 text-gray-200 text-sm md:text-base">
+                Jadwal Kegiatan Resmi Kepala Badan Kesatuan Bangsa dan Politik
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12 w-full space-y-10">
+
+        <!-- Kartu Profil Pimpinan & Status Kedinasan -->
+        <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 border-l-8 border-brand-green flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-5">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" 
+                     alt="Foto Kepala Badan" 
+                     class="w-20 h-20 rounded-xl object-cover border-2 border-brand-green shadow">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Drs. H. Ahmad Wijaya, M.Si</h2>
+                    <p class="text-gray-500 text-sm font-medium">Kepala Badan Kesatuan Bangsa dan Politik</p>
+                    <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-id-badge mr-1"></i> NIP: 19691231 199003 1 001</p>
+                </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-xl border border-green-200 text-center md:text-right w-full md:w-auto">
+                <span class="text-xs text-gray-500 block mb-1">Status Kedinasan Hari Ini:</span>
+                <span class="inline-flex items-center text-sm font-bold text-brand-green bg-white px-3 py-1.5 rounded-lg border border-green-300 shadow-sm">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse mr-2"></span>
+                    Hadir Dinas Kantor
+                </span>
+            </div>
+        </section>
+
+        <!-- Filter & Kontrol Kalender Agenda -->
+        <section class="space-y-6">
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-4 border-gray-300">
+                <h3 class="text-xl font-bold text-brand-green flex items-center">
+                    <i class="fa-solid fa-calendar-days mr-2"></i> Jadwal Kedinasan Minggu Ini
+                </h3>
+
+                <!-- Filter Status -->
+                <div class="flex flex-wrap gap-2 text-xs">
+                    <button class="px-3 py-1.5 bg-brand-green text-white rounded-lg font-medium shadow-sm">Semua</button>
+                    <button class="px-3 py-1.5 bg-white text-gray-600 rounded-lg border hover:bg-gray-100">Hari Ini</button>
+                    <button class="px-3 py-1.5 bg-white text-gray-600 rounded-lg border hover:bg-gray-100">Mendatang</button>
+                    <button class="px-3 py-1.5 bg-white text-gray-600 rounded-lg border hover:bg-gray-100">Selesai</button>
+                </div>
+            </div>
+
+            <!-- List Card Agenda -->
+            <div class="space-y-4">
+
+                <!-- Agenda 1 (Selesai) -->
+                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex items-start space-x-5">
+                        <div class="bg-gray-100 text-gray-700 text-center rounded-xl p-3 min-w-[80px] border border-gray-200">
+                            <span class="block text-2xl font-extrabold">03</span>
+                            <span class="text-xs uppercase font-semibold">Agt 2026</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 mb-1">
+                                <span><i class="fa-regular fa-clock text-brand-green mr-1"></i> 08:30 - 10:30 WIB</span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Ruang Rapat Utama</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800">Rapat Koordinasi Stabilitas Daerah dan Evaluasi Kinerja Internal</h4>
+                            <p class="text-xs text-gray-600 mt-1">Pengarahan langsung Kepala Badan kepada para Kepala Bidang dan Sekretariat Kesbangpol.</p>
+                        </div>
+                    </div>
+                    <div class="self-start md:self-center">
+                        <span class="bg-gray-100 text-gray-600 text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-200 inline-block">
+                            <i class="fa-solid fa-circle-check text-gray-400 mr-1"></i> Selesai
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Agenda 2 (Hari Ini) -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-2 border-brand-green hover:shadow-lg transition flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-green text-white text-[10px] uppercase font-bold px-3 py-1 rounded-bl-lg">
+                        Agenda Hari Ini
+                    </div>
+                    <div class="flex items-start space-x-5">
+                        <div class="bg-brand-green text-white text-center rounded-xl p-3 min-w-[80px] shadow">
+                            <span class="block text-2xl font-extrabold">05</span>
+                            <span class="text-xs uppercase font-semibold">Agt 2026</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-brand-green mb-1">
+                                <span><i class="fa-regular fa-clock mr-1"></i> 13:00 - 15:00 WIB</span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Ruang Tamu Kaban</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800">Audiensi Bersama Pengurus Forum Kerukunan Umat Beragama (FKUB)</h4>
+                            <p class="text-xs text-gray-600 mt-1">Pembahasan program kerja dialog interaktif dan pemeliharaan kerukunan di daerah.</p>
+                        </div>
+                    </div>
+                    <div class="self-start md:self-center">
+                        <span class="bg-green-100 text-brand-green text-xs font-bold px-3 py-1.5 rounded-lg border border-green-200 inline-block">
+                            <i class="fa-solid fa-spinner animate-spin mr-1"></i> Berlangsung
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Agenda 3 (Mendatang) -->
+                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex items-start space-x-5">
+                        <div class="bg-amber-50 text-amber-800 text-center rounded-xl p-3 min-w-[80px] border border-amber-200">
+                            <span class="block text-2xl font-extrabold">08</span>
+                            <span class="text-xs uppercase font-semibold">Agt 2026</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 mb-1">
+                                <span><i class="fa-regular fa-clock text-brand-green mr-1"></i> 09:00 - Selesai</span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Gedung Serbaguna Daerah</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800">Pembukaan Pembekalan Wawasan Kebangsaan Bagi Pemilih Pemula</h4>
+                            <p class="text-xs text-gray-600 mt-1">Memberikan kata sambutan dan membuka secara resmi acara pendidikan politik pemilih muda.</p>
+                        </div>
+                    </div>
+                    <div class="self-start md:self-center">
+                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-200 inline-block">
+                            <i class="fa-solid fa-calendar-plus mr-1"></i> Terjadwal
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Agenda 4 (Mendatang) -->
+                <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex items-start space-x-5">
+                        <div class="bg-amber-50 text-amber-800 text-center rounded-xl p-3 min-w-[80px] border border-amber-200">
+                            <span class="block text-2xl font-extrabold">12</span>
+                            <span class="text-xs uppercase font-semibold">Agt 2026</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 mb-1">
+                                <span><i class="fa-regular fa-clock text-brand-green mr-1"></i> 10:00 - 12:00 WIB</span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Kantor Gubernur / Balai Kota</span>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800">Rapat Koordinasi Forkopimda Persiapan Pemilu / Pilkada</h4>
+                            <p class="text-xs text-gray-600 mt-1">Mendampingi Pimpinan Daerah dalam pembahasan pemetaan kerawanan kamtibmas.</p>
+                        </div>
+                    </div>
+                    <div class="self-start md:self-center">
+                        <span class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-blue-200 inline-block">
+                            <i class="fa-solid fa-calendar-plus mr-1"></i> Terjadwal
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Info Tambahan Permohonan Audiensi -->
+        <section class="bg-white rounded-xl shadow-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border-t-4 border-amber-500">
+            <div class="flex items-center space-x-4">
+                <div class="p-3 bg-amber-100 text-amber-700 rounded-lg text-2xl">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Permohonan Audiensi / Pertemuan Pimpinan</h4>
+                    <p class="text-xs text-gray-600">Lembaga, Ormas, atau Instansi yang ingin mengajukan permohonan audiensi dapat mengirimkan surat resmi via Sekretariat.</p>
+                </div>
+            </div>
+            <a href="saran-kritik.html" class="px-5 py-2.5 bg-brand-green text-white font-semibold text-xs rounded-lg hover:bg-brand-lightGreen transition whitespace-nowrap">
+                Aukan Surat / Kontak
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-green text-white py-5">
+        <div class="text-center text-sm">
+            © 2026 Badan Kesatuan Bangsa dan Politik
+        </div>
+    </footer>
+    <script>
+    // 1. MODAL LOADING SCRIPT
+    window.addEventListener('load', () => {
+      const loaderModal = document.getElementById('loader-modal');
+      // Berikan jeda halus sebelum menyembunyikan modal
+      setTimeout(() => {
+        loaderModal.classList.add('opacity-0');
+        setTimeout(() => {
+          loaderModal.style.display = 'none';
+        }, 500);
+      }, 400);
+    });
+
+    // 2. MOBILE MENU TOGGLE SCRIPT
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Accordion Profil PD
+    const mobileProfilBtn = document.getElementById('mobile-profil-btn');
+    const mobileProfilSub = document.getElementById('mobile-profil-sub');
+    mobileProfilBtn.addEventListener('click', () => {
+      mobileProfilSub.classList.toggle('hidden');
+    });
+
+    // Accordion Publikasi
+    const mobilePublikasiBtn = document.getElementById('mobile-publikasi-btn');
+    const mobilePublikasiSub = document.getElementById('mobile-publikasi-sub');
+    mobilePublikasiBtn.addEventListener('click', () => {
+      mobilePublikasiSub.classList.toggle('hidden');
+    });
+
+    // 3. HERO SLIDER AUTOMATION
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+    const intervalTime = 4000;
+    let slideInterval;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove('opacity-0');
+          slide.classList.add('opacity-100');
+        } else {
+          slide.classList.remove('opacity-100');
+          slide.classList.add('opacity-0');
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetTimer();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetTimer();
+    });
+
+    function startTimer() {
+      slideInterval = setInterval(nextSlide, intervalTime);
+    }
+
+    function resetTimer() {
+      clearInterval(slideInterval);
+      startTimer();
+    }
+
+    startTimer();
+  </script>
+</body>
+</html>
